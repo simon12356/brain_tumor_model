@@ -1,0 +1,39 @@
+# Virtual Environment
+venv/
+.env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# ML model files (optional)
+*.h5
+*.keras
+*.pt
+*.pth
+
+# Temporary files
+tmp/
+temp/
