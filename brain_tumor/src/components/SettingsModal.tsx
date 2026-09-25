@@ -89,13 +89,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div className="setting-section">
             <label className="input-label">
               <Server size={15} />
-              <span>FastAPI / PyTorch Backend Endpoint URL</span>
+              <span>FastAPI / TensorFlow Backend Endpoint URL</span>
             </label>
             <div className="input-group">
               <input
                 type="text"
                 className="text-input"
-                placeholder="http://127.0.0.1:8000/predict"
+                placeholder="https://brain-tumor-model-4qr5.onrender.com/predict"
                 value={urlInput}
                 onChange={e => {
                   setUrlInput(e.target.value);
@@ -126,7 +126,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             {testingStatus === 'offline' && (
               <div className="status-box status-offline">
                 <AlertCircle size={16} />
-                <span>Could not reach backend at this address. Check if your FastAPI/Uvicorn server is running on port 8000.</span>
+                <span>Could not reach backend at this address. Check if the server is active or waking up.</span>
               </div>
             )}
 

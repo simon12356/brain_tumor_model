@@ -1,9 +1,13 @@
 import type { PredictionResult } from '../types';
 
-export const DEFAULT_API_URL = 'http://127.0.0.1:8000/predict';
+export const DEFAULT_API_URL = 'https://brain-tumor-model-4qr5.onrender.com/predict';
 
 export const getSavedApiUrl = (): string => {
-  return localStorage.getItem('neuroscan_api_url') || DEFAULT_API_URL;
+  const saved = localStorage.getItem('neuroscan_api_url');
+  if (!saved || saved.includes('127.0.0.1:8000') || saved.includes('localhost:8000')) {
+    return DEFAULT_API_URL;
+  }
+  return saved;
 };
 
 export const setSavedApiUrl = (url: string): void => {
@@ -24,7 +28,7 @@ export async function checkServerHealth(endpointUrl: string = getSavedApiUrl()):
     // Extract base URL if endpoint includes /predict
     const baseUrl = endpointUrl.replace(/\/predict\/?$/, '');
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
 
     const res = await fetch(baseUrl, {
       method: 'GET',
@@ -32,7 +36,7 @@ export async function checkServerHealth(endpointUrl: string = getSavedApiUrl()):
     }).catch(() => null);
 
     clearTimeout(timeoutId);
-    return res !== null;
+    return res !== null && res.ok;
   } catch {
     return false;
   }
