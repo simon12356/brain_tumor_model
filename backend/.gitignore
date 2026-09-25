@@ -30,7 +30,7 @@ Thumbs.db
 
 # ML model files (optional)
 *.h5
-*.keras
+# *.keras
 *.pt
 *.pth
 

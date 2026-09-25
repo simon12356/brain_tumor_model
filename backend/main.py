@@ -1,9 +1,13 @@
+from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import tensorflow as tf
 from PIL import Image
 import numpy as np
 import io
+
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "brain_tumor_model1.keras"
 
 app = FastAPI()
 
@@ -16,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("brain_tumor_model1.keras")
+model = tf.keras.models.load_model(MODEL_PATH)
 classes = ["glioma", "meningioma", "notumor", "pituitary"]
 
 @app.get("/")
